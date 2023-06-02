@@ -53,6 +53,8 @@ api:
             ean: !lambda return eancode.c_str();
 
 wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
   ap:
     password: "12345678"
 
