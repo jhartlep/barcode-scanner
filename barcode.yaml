@@ -28,7 +28,7 @@ esp32:
 
 esphome:
   name: "${name}"
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
   project:
     name: beutelsend.barcodescanner
     version: "1.0.0"
@@ -37,9 +37,9 @@ esphome:
       # Show Home Page on boot
       - display.page.show: page_home
 
-dashboard_import:
-  package_import_url: github://jhartlep/barcode-scanner/barcode.yaml@main
-  import_full_config: false
+#dashboard_import:
+#  package_import_url: github://jhartlep/barcode-scanner/barcode.yaml@main
+#  import_full_config: false
 
 ota:
 
@@ -153,12 +153,14 @@ i2c:
   id: i2c_bus
 
 image:
-  - file: "barcode.jpg"
+  - file: "_images/barcode.jpg"
     id: barcode_image
     resize: 128x35
-  - file: "no_result.jpg"
+  - file: "_images/no_result.jpg"
     id: no_result_image
     resize: 128x35
+  - file: "_images/speisekammer.png"
+    id: speisekammer_image
 
 display:
   - platform: ssd1306_i2c
@@ -169,8 +171,8 @@ display:
       # --- HomePage
       - id: page_home
         lambda: |-
-          it.image(30, 0, id(barcode_image));
-          it.print(0, 45, id(arial_font_14), "Bereit zum Scannen");
+          it.image(0, 0, id(speisekammer_image));
+#          it.print(0, 45, id(arial_font_14), "Bereit zum Scannen");
       # --- Product found
       - id: page_product
         lambda: |-
